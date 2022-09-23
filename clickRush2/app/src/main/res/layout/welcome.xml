@@ -1,21 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center_vertical">
-    <TextView
-            android:id="@+id/helloTextView"
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+    <Button
+            android:text="@string/tombolClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/helloTextView"
-            android:textStyle="bold" android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
+            android:id="@+id/tombolClick"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_main"
+            app:layout_constraintTop_toTopOf="@+id/activity_main"
+            app:layout_constraintRight_toRightOf="@+id/activity_main"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_main" app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintVertical_bias="0.499" android:background="#1884E3" android:textColor="#FFFFFF"/>
     <TextView
-            android:id="@+id/selamatTextView"
+            android:text="@string/score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/selamatTextView"
-    />
-</LinearLayout>
+            android:id="@+id/score"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="-3dp" tools:layout_editor_absoluteX="4dp"/>
+    <TextView
+            android:text="@string/timeLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeLeft"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="698dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginEnd="32dp" app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+            android:text="@string/tombolStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tombolStart"
+            app:layout_constraintLeft_toLeftOf="@+id/activity_main"
+            app:layout_constraintTop_toTopOf="@+id/activity_main"
+            app:layout_constraintRight_toRightOf="@+id/activity_main"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_main" app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintVertical_bias="0.916" android:background="#273643" android:textColor="#FFFFFF"/>
+
+
+</android.support.constraint.ConstraintLayout>
