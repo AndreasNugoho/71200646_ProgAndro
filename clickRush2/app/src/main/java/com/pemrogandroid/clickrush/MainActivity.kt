@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         tombolStart.isEnabled = true
         tombolClick.isEnabled = false
 
-
+        
         var timer = object :CountDownTimer(30000,1000){
             @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished : Long) {
