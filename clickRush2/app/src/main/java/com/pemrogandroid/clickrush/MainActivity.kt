@@ -13,68 +13,34 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var tombolStart:Button
-    private lateinit var tombolClick:Button
-    private lateinit var score:TextView
-    private lateinit var timeLeft:TextView
-
-    var waktu:Int = 30
-    var click:Int = 0
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.welcome)
 
-        tombolStart = findViewById(R.id.tombolStart)
-        tombolClick = findViewById(R.id.tombolClick)
-        score = findViewById(R.id.score)
-        timeLeft = findViewById(R.id.timeLeft)
+    }
+    private var count = 0
+    fun onTap(view: View) {
+        val timeLeft = findViewById<TextView>(R.id.timeLeft)
+        val score = findViewById<TextView>(R.id.score)
+        if(count == 0){
+            object :CountDownTimer(30000,1000){
+                override fun onTick(p0: Long) {
+                    timeLeft.setText("Time left :"+p0/1000)
+                }
 
-        tombolStart.isEnabled = true
-        tombolClick.isEnabled = false
+                override fun onFinish() {
+                    timeLeft.setText("Waktu Habis")
+                    score.setText("Score: 0")
+                    Toast.makeText(this@MainActivity,"Time Left: 30 Second",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity,"Time's up! Your score was: $count",Toast.LENGTH_SHORT).show()
+                    count = 0
 
-        
-        var timer = object :CountDownTimer(30000,1000){
-            @SuppressLint("SetTextI18n")
-            override fun onTick(millisUntilFinished : Long) {
-                waktu--
-                timeLeft.setText("Waktu: "+waktu)
+                }
 
-            }
-
-            override fun onFinish() {
-                tombolClick.isEnabled = false
-                tombolStart.isEnabled = true
-                timeLeft.setText("Waktu: 0")
-                Toast.makeText(this@MainActivity,"waktu habis!",Toast.LENGTH_SHORT).show()
-                Toast.makeText(this@MainActivity,"score anda = $click",Toast.LENGTH_SHORT).show()
-            }
+            }.start()
         }
-
-        tombolClick.setOnClickListener(object : View.OnClickListener {
-            @SuppressLint("SetTextI18n")
-            override fun onClick(view: View?) {
-                click++
-                score.setText("Click: "+click)
-            }
-
-        })
-        tombolStart.setOnClickListener(object : View.OnClickListener {
-            @SuppressLint("SetTextI18n")
-            override fun onClick(view: View?) {
-                timer.start()
-                tombolClick.isEnabled = true
-                tombolStart.isEnabled = false
-                click = 0
-                waktu = 30
-                timeLeft.setText("Waktu: "+waktu)
-                score.setText("Click: "+click)
-            }
-
-        })
-
+        count++
+        score.setText("Score: $count")
     }
 
 }
