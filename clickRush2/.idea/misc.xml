@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/belajar/clickRush2/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/belajar/clickRush2/app/src/main/res/layout/popup.xml" value="0.4" />
         <entry key="..\:/belajar/clickRush2/app/src/main/res/layout/ucapan.xml" value="0.22826086956521738" />
-        <entry key="..\:/belajar/clickRush2/app/src/main/res/layout/welcome.xml" value="0.2265625" />
+        <entry key="..\:/belajar/clickRush2/app/src/main/res/layout/welcome.xml" value="0.536" />
+        <entry key="..\:/belajar/clickRush2/app/src/main/res/menu/about_menu.xml" value="0.1828125" />
       </map>
     </option>
   </component>
