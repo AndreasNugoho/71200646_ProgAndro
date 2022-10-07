@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/belajar/CatatanKecilku/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/belajar/CatatanKecilku/app/src/main/res/layout/list_selection_view_holder.xml" value="0.11197916666666667" />
+        <entry key="..\:/belajar/CatatanKecilku/app/src/main/res/layout/main_fragment.xml" value="0.253125" />
+      </map>
+    </option>
+  </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
