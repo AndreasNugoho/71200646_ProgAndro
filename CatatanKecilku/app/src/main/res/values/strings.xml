@@ -2,4 +2,6 @@
     <string name="app_name">CatatanKecilku</string>
     <string name="nama_list">masukkan nama daftar anda?</string>
     <string name="create_list">Create</string>
+    <string name="to_add">Tambahkan task yang ingin di tambahkan?</string>
+    <string name="add_task">Add</string>
 </resources>
