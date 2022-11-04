@@ -1,0 +1,163 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.pemrogandroid.catatantempat"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml
+10
+11    <!--
+12         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+13         Google Maps Android API v2, but you must specify either coarse or fine
+14         location permissions for the "MyLocation" functionality.
+15    -->
+16    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+16-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:10:5-80
+16-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:10:22-78
+17    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+17-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:11:5-78
+17-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:11:22-76
+18    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+18-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:11:5-78
+18-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:11:22-76
+19    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+19-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:11:5-78
+19-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:11:22-76
+20
+21    <!-- Include required permissions for Google Maps API to run. -->
+22    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+22-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
+22-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:22-76
+23    <uses-permission android:name="android.permission.INTERNET" />
+23-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:24:5-67
+23-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:24:22-64
+24
+25    <uses-feature
+25-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:26:5-28:35
+26        android:glEsVersion="0x00020000"
+26-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:27:9-41
+27        android:required="true" />
+27-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:28:9-32
+28
+29    <queries>
+29-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:30:5-34:15
+30
+31        <!-- Needs to be explicitly declared on Android R+ -->
+32        <package android:name="com.google.android.apps.maps" />
+32-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:33:9-64
+32-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:33:18-61
+33    </queries>
+34
+35    <permission
+35-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\392bbe8968327e6f3eb127fa1326e74d\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+36        android:name="com.pemrogandroid.catatantempat.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+36-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\392bbe8968327e6f3eb127fa1326e74d\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+37        android:protectionLevel="signature" />
+37-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\392bbe8968327e6f3eb127fa1326e74d\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+38
+39    <uses-permission android:name="com.pemrogandroid.catatantempat.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+39-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\392bbe8968327e6f3eb127fa1326e74d\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+39-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\392bbe8968327e6f3eb127fa1326e74d\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+40
+41    <application
+41-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:15:5-45:19
+42        android:allowBackup="true"
+42-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:16:13-39
+43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+43-->[androidx.core:core:1.9.0] C:\Users\DELL\.gradle\caches\transforms-3\392bbe8968327e6f3eb127fa1326e74d\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+44        android:icon="@mipmap/ic_launcher"
+44-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:17:13-47
+45        android:label="@string/app_name"
+45-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:18:13-45
+46        android:roundIcon="@mipmap/ic_launcher_round"
+46-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:19:13-58
+47        android:supportsRtl="true"
+47-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:20:13-39
+48        android:theme="@style/Theme.CatatanTempat" >
+48-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:21:13-55
+49
+50        <!--
+51             The API key for Google Maps-based APIs is defined as a string resource.
+52             (See the file "res/values/google_maps_api.xml").
+53             Note that the API key is linked to the encryption key used to sign the APK.
+54             You need a different API key for each encryption key, including the release key that is used to
+55             sign the APK for publishing.
+56             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+57        -->
+58        <meta-data
+59            android:name="com.google.android.geo.API_KEY"
+59-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:32:17-62
+60            android:value="AIzaSyB3QG3W_JMjI3nDGI-aTOkkfZHg_Jk9Y-o" />
+60-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:33:17-55
+61
+62        <activity
+62-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:35:9-44:20
+63            android:name="com.pemrogandroid.catatantempat.MapsActivity"
+63-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:36:17-45
+64            android:exported="true"
+64-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:37:17-40
+65            android:label="@string/title_activity_maps" >
+65-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:38:17-60
+66            <intent-filter>
+66-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:39:13-43:29
+67                <action android:name="android.intent.action.MAIN" />
+67-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:40:17-68
+67-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:40:25-66
+68
+69                <category android:name="android.intent.category.LAUNCHER" />
+69-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:42:17-76
+69-->D:\belajar\catatanTempat\app\src\main\AndroidManifest.xml:42:27-74
+70            </intent-filter>
+71        </activity>
+72        <!-- Needs to be explicitly declared on P+ -->
+73        <uses-library
+73-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
+74            android:name="org.apache.http.legacy"
+74-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
+75            android:required="false" />
+75-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\DELL\.gradle\caches\transforms-3\296bb2edb9cdde610a99caa10de374ad\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
+76
+77        <activity
+77-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\DELL\.gradle\caches\transforms-3\09f793bb459727555dea8bc087c9e709\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+78            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+78-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\DELL\.gradle\caches\transforms-3\09f793bb459727555dea8bc087c9e709\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+79            android:exported="false"
+79-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\DELL\.gradle\caches\transforms-3\09f793bb459727555dea8bc087c9e709\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+80            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+80-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\DELL\.gradle\caches\transforms-3\09f793bb459727555dea8bc087c9e709\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+81
+82        <meta-data
+82-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\DELL\.gradle\caches\transforms-3\9317d9c3608f66ed00a6ce50092b418e\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+83            android:name="com.google.android.gms.version"
+83-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\DELL\.gradle\caches\transforms-3\9317d9c3608f66ed00a6ce50092b418e\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+84            android:value="@integer/google_play_services_version" />
+84-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\DELL\.gradle\caches\transforms-3\9317d9c3608f66ed00a6ce50092b418e\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+85
+86        <provider
+86-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\5d33cbac3a835c230cd6f0e7beeb5711\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+87            android:name="androidx.startup.InitializationProvider"
+87-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\5d33cbac3a835c230cd6f0e7beeb5711\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+88            android:authorities="com.pemrogandroid.catatantempat.androidx-startup"
+88-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\5d33cbac3a835c230cd6f0e7beeb5711\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+89            android:exported="false" >
+89-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\5d33cbac3a835c230cd6f0e7beeb5711\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+90            <meta-data
+90-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\5d33cbac3a835c230cd6f0e7beeb5711\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+91                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+91-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\5d33cbac3a835c230cd6f0e7beeb5711\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+92                android:value="androidx.startup" />
+92-->[androidx.emoji2:emoji2:1.2.0] C:\Users\DELL\.gradle\caches\transforms-3\5d33cbac3a835c230cd6f0e7beeb5711\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+93            <meta-data
+93-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\DELL\.gradle\caches\transforms-3\6f570688fb9bc73589cb4aa390a8fa07\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+94                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+94-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\DELL\.gradle\caches\transforms-3\6f570688fb9bc73589cb4aa390a8fa07\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+95                android:value="androidx.startup" />
+95-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\DELL\.gradle\caches\transforms-3\6f570688fb9bc73589cb4aa390a8fa07\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+96        </provider>
+97    </application>
+98
+99</manifest>
