@@ -92,7 +92,7 @@ class BookmarkDetailsActivity : AppCompatActivity(){
                     val photoFile = photoFile ?: return
                     val uri = FileProvider.getUriForFile(
                         this,
-                        "com.raywenderlich.placebook.fileprovider",
+                        "com.pemrogandroid.catatantempat.fileprovider",
                         photoFile
                     )
                     revokeUriPermission(
