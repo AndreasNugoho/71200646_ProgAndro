@@ -2,5 +2,5 @@
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <external-path
         name="placebook_images"
-        path="Android/data/com.hqsoft.esales.forms.placebook/files/Pictures" />
+        path="Android/data/com.pemrogandroid.catatantempat/files/Pictures" />
 </paths>
