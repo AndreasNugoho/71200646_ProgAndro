@@ -33,7 +33,7 @@ class SearchPresenter(
 
             override fun onComplete() {}
         }
-
+ 
     override fun getSearchResults(query: String) {
         val searchResultsDisposable = searchResultsObservable(query)
             .subscribeOn(Schedulers.io())
