@@ -17,7 +17,8 @@ import com.squareup.picasso.Picasso
 
 import java.util.HashSet
 
-class MainAdapter(internal var movieList: List<Movie>, internal var context: Context) : RecyclerView.Adapter<MainAdapter.MoviesHolder>() {
+class MainAdapter(internal var movieList: List<Movie>, internal var context: Context) :
+  RecyclerView.Adapter<MainAdapter.MoviesHolder>() {
   val selectedMovies = HashSet<Movie>()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesHolder {
@@ -29,9 +30,10 @@ class MainAdapter(internal var movieList: List<Movie>, internal var context: Con
     holder.titleTextView.text = movieList[position].title
     holder.releaseDateTextView.text = movieList[position].releaseDate
     if (movieList[position].posterPath.equals("")) {
-      holder.movieImageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_local_movies_gray))
+      holder.movieImageView.setImageDrawable(context.getDrawable(R.drawable.ic_local_movies_gray))
     } else {
-      Picasso.get().load(RetrofitClient.TMDB_IMAGEURL + movieList[position].posterPath).into(holder.movieImageView)
+      Picasso.get().load(RetrofitClient.TMDB_IMAGEURL + movieList[position].posterPath)
+        .into(holder.movieImageView)
     }
   }
 
@@ -62,6 +64,5 @@ class MainAdapter(internal var movieList: List<Movie>, internal var context: Con
         }
       }
     }
-
   }
 }

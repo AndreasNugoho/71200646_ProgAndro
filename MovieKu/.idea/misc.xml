@@ -4,10 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/koh/MovieKu/app/src/main/res/layout/activity_add_movie.xml" value="0.11302083333333333" />
+        <entry key="..\:/koh/MovieKu/app/src/main/res/layout/activity_detail_movie.xml" value="0.536" />
         <entry key="..\:/koh/MovieKu/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/koh/MovieKu/app/src/main/res/layout/activity_movie_details.xml" value="0.11302083333333333" />
         <entry key="..\:/koh/MovieKu/app/src/main/res/layout/activity_search_movie.xml" value="0.11302083333333333" />
         <entry key="..\:/koh/MovieKu/app/src/main/res/layout/item_movie_details.xml" value="0.11302083333333333" />
         <entry key="..\:/koh/MovieKu/app/src/main/res/layout/item_movie_main.xml" value="0.11302083333333333" />
+        <entry key="..\:/koh/MovieKu/app/src/main/res/menu/main.xml" value="0.12760416666666666" />
       </map>
     </option>
   </component>

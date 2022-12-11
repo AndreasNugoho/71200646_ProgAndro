@@ -17,17 +17,23 @@ import com.pemrogandroid.movieku.ui.search.SearchActivity
 
 import com.squareup.picasso.Picasso
 
-open class AddMovieActivity : AppCompatActivity() {
+class AddMovieActivity : AppCompatActivity(), AddMovieContract.ViewInterface {
   private lateinit var titleEditText: EditText
   private lateinit var releaseDateEditText: EditText
   private lateinit var movieImageView: ImageView
-  private lateinit var dataSource: LocalDataSource
+  private lateinit var addMoviePresenter: AddMovieContract.PresenterInterface
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_add_movie)
+
+    setupPresenter()
     setupViews()
-    dataSource = LocalDataSource(application)
+  }
+
+  fun setupPresenter() {
+    val dataSource = LocalDataSource(application)
+    addMoviePresenter = AddMoviePresenter(this, dataSource)
   }
 
   fun setupViews() {
@@ -36,31 +42,25 @@ open class AddMovieActivity : AppCompatActivity() {
     movieImageView = findViewById(R.id.movie_imageview)
   }
 
-  //search onClick
   fun goToSearchMovieActivity(v: View) {
     val title = titleEditText.text.toString()
     val intent = Intent(this@AddMovieActivity, SearchActivity::class.java)
     intent.putExtra(SearchActivity.SEARCH_QUERY, title)
-    startActivityForResult(intent,
-      SEARCH_MOVIE_ACTIVITY_REQUEST_CODE
-    )
+    startActivityForResult(intent, SEARCH_MOVIE_ACTIVITY_REQUEST_CODE)
   }
 
-  fun onClickAddMovie(v: View) {
+  fun onClickAddMovie(view: View) {
+    val title = titleEditText.text.toString()
+    val releaseDate = releaseDateEditText.text.toString()
+    val posterPath = if (movieImageView.tag != null) movieImageView.tag.toString() else ""
 
-    if (TextUtils.isEmpty(titleEditText.text)) {
-      showToast("Judul tidak dapat kosong!")
-    } else {
-      val title = titleEditText.text.toString()
-      val releaseDate = releaseDateEditText.text.toString()
-      val posterPath = if (movieImageView.tag != null) movieImageView.tag.toString() else ""
+    addMoviePresenter.addMovie(title, releaseDate, posterPath)
 
-      val movie = Movie(title = title, releaseDate = releaseDate, posterPath = posterPath)
-      dataSource.insert(movie)
+  }
 
-      setResult(Activity.RESULT_OK)
-      finish()
-    }
+  override fun returnToMain() {
+    setResult(Activity.RESULT_OK)
+    finish()
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -70,12 +70,18 @@ open class AddMovieActivity : AppCompatActivity() {
       titleEditText.setText(data?.getStringExtra(SearchActivity.EXTRA_TITLE))
       releaseDateEditText.setText(data?.getStringExtra(SearchActivity.EXTRA_RELEASE_DATE))
       movieImageView.tag = data?.getStringExtra(SearchActivity.EXTRA_POSTER_PATH)
-      Picasso.get().load(TMDB_IMAGEURL + data?.getStringExtra(SearchActivity.EXTRA_POSTER_PATH)).into(movieImageView)
+      Picasso.get()
+        .load(TMDB_IMAGEURL + data?.getStringExtra(SearchActivity.EXTRA_POSTER_PATH))
+        .into(movieImageView)
     }
   }
 
-  fun showToast(string: String) {
+  override fun showToast(string: String) {
     Toast.makeText(this@AddMovieActivity, string, Toast.LENGTH_LONG).show()
+  }
+
+  override fun displayError(string: String) {
+    showToast(string)
   }
 
   companion object {

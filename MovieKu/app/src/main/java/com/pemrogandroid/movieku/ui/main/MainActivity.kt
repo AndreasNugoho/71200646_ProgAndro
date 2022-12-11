@@ -26,15 +26,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContract.ViewInterface {
 
     private lateinit var moviesRecyclerView: RecyclerView
-    private var adapter: MainAdapter? = null
+    private lateinit var adapter: MainAdapter
     private lateinit var fab: FloatingActionButton
     private lateinit var noMoviesLayout: LinearLayout
 
-    private lateinit var dataSource: LocalDataSource
-    private val compositeDisposable = CompositeDisposable()
+    private lateinit var mainPresenter: MainContract.PresenterInterface
 
     private val TAG = "MainActivity"
 
@@ -42,18 +41,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupPresenter()
         setupViews()
     }
 
     override fun onStart() {
         super.onStart()
-        dataSource = LocalDataSource(application)
-        getMyMoviesList()
+        mainPresenter.getMyMoviesList()
     }
 
     override fun onStop() {
         super.onStop()
-        compositeDisposable.clear()
+        mainPresenter.stop()
+    }
+
+    private fun setupPresenter() {
+        val dataSource = LocalDataSource(application)
+        mainPresenter = MainPresenter(this, dataSource)
     }
 
     private fun setupViews() {
@@ -64,67 +68,32 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = "Daftar Tontonan"
     }
 
-    private fun getMyMoviesList() {
-        val myMoviesDisposable = myMoviesObservable
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(observer)
+    override fun displayMovies(movieList: List<Movie>) {
+        adapter = MainAdapter(movieList, this@MainActivity)
+        moviesRecyclerView.adapter = adapter
 
-        compositeDisposable.add(myMoviesDisposable)
+        moviesRecyclerView.visibility = VISIBLE
+        noMoviesLayout.visibility = INVISIBLE
     }
 
-    private val myMoviesObservable: Observable<List<Movie>>
-        get() = dataSource.allMovies
+    override fun displayNoMovies() {
+        Log.d(TAG, "Tidak ada film yang ditampilkan")
 
-
-    private val observer: DisposableObserver<List<Movie>>
-        get() = object : DisposableObserver<List<Movie>>() {
-
-            override fun onNext(movieList: List<Movie>) {
-                displayMovies(movieList)
-            }
-
-            override fun onError(@NonNull e: Throwable) {
-                Log.d(TAG, "Error$e")
-                e.printStackTrace()
-                displayError("Error fetching movie list")
-            }
-
-            override fun onComplete() {
-                Log.d(TAG, "Completed")
-            }
-        }
-
-    fun displayMovies(movieList: List<Movie>?) {
-        if (movieList == null || movieList.size == 0) {
-            Log.d(TAG, "Belum ada film yang di tambahkan")
-            moviesRecyclerView.visibility = INVISIBLE
-            noMoviesLayout.visibility = VISIBLE
-        } else {
-            adapter =
-                MainAdapter(
-                    movieList,
-                    this@MainActivity
-                )
-            moviesRecyclerView.adapter = adapter
-
-            moviesRecyclerView.visibility = VISIBLE
-            noMoviesLayout.visibility = INVISIBLE
-        }
+        moviesRecyclerView.visibility = INVISIBLE
+        noMoviesLayout.visibility = VISIBLE
     }
+
     fun goToAddMovieActivity(v: View) {
         val myIntent = Intent(this@MainActivity, AddMovieActivity::class.java)
-        startActivityForResult(myIntent,
-            ADD_MOVIE_ACTIVITY_REQUEST_CODE
-        )
+        startActivityForResult(myIntent, ADD_MOVIE_ACTIVITY_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ADD_MOVIE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            showToast("Film berhasil di tambahkan!")
+            showToast("film sukses di tambahkan")
         } else {
-            displayError("Film gagal di tambahkan!")
+            displayError("film gagal di tambahkan")
         }
     }
 
@@ -135,33 +104,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.deleteMenuItem) {
-            val adapter = this.adapter
-            if (adapter != null) {
-                for (movie in adapter.selectedMovies) {
-                    dataSource.delete(movie)
-                }
-                if (adapter.selectedMovies.size == 1) {
-                    showToast("Berhasil di delete!")
-                } else if (adapter.selectedMovies.size > 1) {
-                    showToast("Berhasil di delete!")
-                }
-            }
+            mainPresenter.onDeleteTapped(adapter.selectedMovies)
         }
 
         return super.onOptionsItemSelected(item)
     }
 
-    fun showToast(str: String) {
-        Toast.makeText(this@MainActivity, str, Toast.LENGTH_LONG).show()
+    override fun showToast(string: String) {
+        Toast.makeText(this@MainActivity, string, Toast.LENGTH_LONG).show()
     }
 
-    fun displayError(e: String) {
+    override fun displayError(e: String) {
         showToast(e)
     }
 
     companion object {
         const val ADD_MOVIE_ACTIVITY_REQUEST_CODE = 1
     }
-
-
 }

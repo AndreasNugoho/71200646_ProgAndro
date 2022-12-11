@@ -12,7 +12,11 @@ import com.pemrogandroid.movieku.model.Movie
 import com.squareup.picasso.Picasso
 
 
-class SearchAdapter(var movieList: List<Movie>, var context: Context, var listener: SearchActivity.RecyclerItemListener) : RecyclerView.Adapter<SearchAdapter.SearchMoviesHolder>() {
+class SearchAdapter(
+  var movieList: List<Movie>,
+  var context: Context,
+  var listener: SearchActivity.RecyclerItemListener
+) : RecyclerView.Adapter<SearchAdapter.SearchMoviesHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMoviesHolder {
     val view = LayoutInflater.from(context).inflate(R.layout.item_movie_details, parent, false)
@@ -25,11 +29,12 @@ class SearchAdapter(var movieList: List<Movie>, var context: Context, var listen
   override fun onBindViewHolder(holder: SearchMoviesHolder, position: Int) {
 
     holder.titleTextView.text = movieList[position].title
-    holder.releaseDateTextView.text = movieList[position].getReleaseYearFromDate()
+    holder.releaseDateTextView.text = movieList[position].releaseDate
     holder.overviewTextView.text = movieList[position].overview
 
     if (movieList[position].posterPath != null) {
-      Picasso.get().load("https://image.tmdb.org/t/p/w500/" + movieList[position].posterPath).into(holder.movieImageView)
+      Picasso.get().load("https://image.tmdb.org/t/p/w500/" + movieList[position].posterPath)
+        .into(holder.movieImageView)
     }
   }
 
@@ -44,7 +49,7 @@ class SearchAdapter(var movieList: List<Movie>, var context: Context, var listen
   inner class SearchMoviesHolder(v: View) : RecyclerView.ViewHolder(v) {
 
     var titleTextView: TextView = v.findViewById(R.id.title_textview)
-    var overviewTextView: TextView = v.findViewById(R.id.overview_overview)
+    var overviewTextView: TextView = v.findViewById(R.id.overview_textview)
     var releaseDateTextView: TextView = v.findViewById(R.id.release_date_textview)
     var movieImageView: ImageView = v.findViewById(R.id.movie_imageview)
 

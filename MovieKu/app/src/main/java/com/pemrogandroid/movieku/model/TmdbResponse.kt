@@ -20,4 +20,11 @@ class TmdbResponse {
     @SerializedName("results")
     @Expose
     var results: List<Movie>? = null
+
+    constructor(page: Int?, totalResults: Int?, totalPages: Int?, results: List<Movie>) : super() {
+        this.page = page
+        this.totalResults = totalResults
+        this.totalPages = totalPages
+        this.results = results
+    }
 }

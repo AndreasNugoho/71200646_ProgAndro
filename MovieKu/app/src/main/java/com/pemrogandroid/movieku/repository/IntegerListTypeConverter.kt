@@ -5,7 +5,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class IntegerListTypeConverter {
-
     @TypeConverter
     fun stringToIntegertList(data: String?): MutableList<Int> {
 
@@ -28,5 +27,4 @@ class IntegerListTypeConverter {
 
         return gson.toJson(someObjects)
     }
-
 }

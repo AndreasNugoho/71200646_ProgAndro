@@ -23,16 +23,15 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity(), SearchContract.ViewInterface {
   private val TAG = "SearchActivity"
+
   private lateinit var searchResultsRecyclerView: RecyclerView
   private lateinit var adapter: SearchAdapter
   private lateinit var noMoviesTextView: TextView
   private lateinit var progressBar: ProgressBar
+  private lateinit var searchPresenter: SearchPresenter
   private lateinit var query: String
-
-  private var dataSource = RemoteDataSource()
-  private val compositeDisposable = CompositeDisposable()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -41,68 +40,43 @@ class SearchActivity : AppCompatActivity() {
     noMoviesTextView = findViewById(R.id.no_movies_textview)
     progressBar = findViewById(R.id.progress_bar)
 
-
     val intent = intent
     query = intent.getStringExtra(SEARCH_QUERY).toString()
 
     setupViews()
+    setupPresenter()
   }
 
   override fun onStart() {
     super.onStart()
-    progressBar.visibility = VISIBLE
-    getSearchResults(query)
+    searchPresenter.getSearchResults(query)
   }
 
   override fun onStop() {
     super.onStop()
-    compositeDisposable.clear()
+    searchPresenter.stop()
   }
 
   private fun setupViews() {
     searchResultsRecyclerView.layoutManager = LinearLayoutManager(this)
   }
 
-  fun getSearchResults(query: String) {
-    val searchResultsDisposable = searchResultsObservable(query)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribeWith(observer)
-
-    compositeDisposable.add(searchResultsDisposable)
+  private fun setupPresenter() {
+    val dataSource = RemoteDataSource()
+    searchPresenter = SearchPresenter(this, dataSource)
   }
 
-  val searchResultsObservable: (String) -> Observable<TmdbResponse> = { query -> dataSource.searchResultsObservable(query) }
+  override fun displayResult(tmdbResponse: TmdbResponse) {
+    Log.d(TAG, "TmdbResponse results" + tmdbResponse.totalResults)
 
-  val observer: DisposableObserver<TmdbResponse>
-    get() = object : DisposableObserver<TmdbResponse>() {
-
-      override fun onNext(@NonNull tmdbResponse: TmdbResponse) {
-        Log.d(TAG, "OnNext" + tmdbResponse.totalResults)
-        displayResult(tmdbResponse)
-      }
-
-      override fun onError(@NonNull e: Throwable) {
-        Log.d(TAG, "Error$e")
-        e.printStackTrace()
-        displayError("Error fetching Movie Data")
-      }
-
-      override fun onComplete() {
-        Log.d(TAG, "Completed")
-      }
-    }
-
-  fun displayResult(tmdbResponse: TmdbResponse) {
     progressBar.visibility = INVISIBLE
-
     if (tmdbResponse.totalResults == null || tmdbResponse.totalResults == 0) {
       searchResultsRecyclerView.visibility = INVISIBLE
       noMoviesTextView.visibility = VISIBLE
     } else {
       adapter = SearchAdapter(
-          tmdbResponse.results
-              ?: arrayListOf(), this@SearchActivity, itemListener
+        tmdbResponse.results
+          ?: arrayListOf(), this@SearchActivity, itemListener
       )
       searchResultsRecyclerView.adapter = adapter
 
@@ -111,11 +85,11 @@ class SearchActivity : AppCompatActivity() {
     }
   }
 
-  fun showToast(string: String) {
+  override fun showToast(string: String) {
     Toast.makeText(this@SearchActivity, string, Toast.LENGTH_LONG).show()
   }
 
-  fun displayError(string: String) {
+  override fun displayError(string: String) {
     showToast(string)
   }
 
@@ -127,15 +101,14 @@ class SearchActivity : AppCompatActivity() {
     val EXTRA_POSTER_PATH = "SearchActivity.POSTER_PATH_REPLY"
   }
 
-  internal var itemListener: RecyclerItemListener = object :
-      RecyclerItemListener {
+  internal var itemListener: RecyclerItemListener = object : RecyclerItemListener {
     override fun onItemClick(view: View, position: Int) {
       val movie = adapter.getItemAtPosition(position)
 
       val replyIntent = Intent()
-      replyIntent.putExtra(EXTRA_TITLE, movie.title)
-      replyIntent.putExtra(EXTRA_RELEASE_DATE, movie.getReleaseYearFromDate())
-      replyIntent.putExtra(EXTRA_POSTER_PATH, movie.posterPath)
+      replyIntent.putExtra(SearchActivity.EXTRA_TITLE, movie.title)
+      replyIntent.putExtra(SearchActivity.EXTRA_RELEASE_DATE, movie.releaseDate)
+      replyIntent.putExtra(SearchActivity.EXTRA_POSTER_PATH, movie.posterPath)
       setResult(Activity.RESULT_OK, replyIntent)
 
       finish()
@@ -143,8 +116,7 @@ class SearchActivity : AppCompatActivity() {
   }
 
   interface RecyclerItemListener {
-    fun onItemClick(v: View, position: Int)
+    fun onItemClick(view: View, position: Int)
   }
-
 }
 

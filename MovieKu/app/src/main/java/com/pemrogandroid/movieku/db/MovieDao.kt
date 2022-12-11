@@ -22,8 +22,4 @@ interface MovieDao {
 
   @Query("DELETE FROM movie_table")
   fun deleteAll()
-
-  @Update
-  fun update(movie: Movie)
-
 }
